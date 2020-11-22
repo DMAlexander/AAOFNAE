@@ -1,1 +1,7 @@
 <h1>Books Page</h1>
+
+{{#each this.model as |record|}}
+    <li>Book title: {{record.name}}</li>
+    <li>Author: {{record.authors}}</li>
+    <li>Number of Pages: {{record.numberOfPages}}</li>
+{{/each}}
