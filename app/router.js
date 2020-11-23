@@ -12,6 +12,5 @@ Router.map(function() {
   this.route('characters');
   this.route('houses');
   this.route('house');
-  this.route('book');
+  this.route('book', { path: '/:isbn' });
 });
-
