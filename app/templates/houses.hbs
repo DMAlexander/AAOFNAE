@@ -1,6 +1,6 @@
 <h1>Houses Page</h1>
 
 {{#each this.model as |record|}}
-    <LinkTo @route='house'><li>Name: {{record.name}}</li></LinkTo>
+    <LinkTo @route='house' @model={{record}}><li>Name: {{record.name}}</li></LinkTo>
     <li>Region: {{record.region}}</li>
 {{/each}}
