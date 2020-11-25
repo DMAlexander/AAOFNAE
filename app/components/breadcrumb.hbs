@@ -1,0 +1,11 @@
+<p>Breadcrumb Componenet</p>
+
+<button type="button" {{on "click" this.getData}} >Book Button</button>
+<button type="button" {{on "click" this.characterClicked}} >Character Button</button>
+<button type="button" {{on "click" this.houseClicked}} >House Button</button>
+
+<ul>
+  {{#each this.data as |person index|}}
+    <li>Hello, {{person.name}}!</li>
+  {{/each}}
+</ul>
