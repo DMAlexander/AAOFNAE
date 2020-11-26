@@ -1,7 +1,11 @@
+<Breadcrumb @model={{this.model}}/>
+
 <h1>Home Screen</h1>
 
-<LinkTo @route='books'>All Books</LinkTo>
+<li><LinkTo @model={{this.model}} @route='books'>Books</LinkTo></li>
+<li><LinkTo @model={{this.model}} @route='characters'>All Characters</LinkTo></li>
+<li><LinkTo @model={{this.model}} @route='houses'>All Houses</LinkTo></li>
 
-<LinkTo @route='characters'>All Characters</LinkTo>
-
-<LinkTo @route='houses'>All Houses</LinkTo>
+{{#each this.model as |record|}}
+    <li>{{record.name}}</li>
+{{/each}}

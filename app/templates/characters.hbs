@@ -1,6 +1,6 @@
 <h1>Characters Page</h1>
 
-{{#each this.model as |record|}}
-    <p>Character name: {{record.name}}</p>
+{{#each this.model.characters as |record|}}
+   <LinkTo @route='character' @model={{record}}><p>Character name: {{record.name}}</p></LinkTo>
     <p>Culture: {{record.culture}}</p>
 {{/each}}
