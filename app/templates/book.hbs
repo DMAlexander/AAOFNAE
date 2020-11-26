@@ -4,3 +4,10 @@
 <p>Isbn: {{this.model.isbn}}</p>
 <p>Number of Pages: {{this.model.numberOfPages}}</p>
 <p>Released: {{this.model.released}}</p>
+<p>Characters: {{this.model.characters}}</p>
+
+<ul>
+  {{#each this.model.characters as |person index|}}
+    <li>Hello, {{person.name}}!</li>
+  {{/each}}
+</ul>

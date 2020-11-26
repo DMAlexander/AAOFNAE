@@ -1,11 +1,28 @@
-<p>Breadcrumb Componenet</p>
+<p>Breadcrumb Component</p>
 
-<button type="button" {{on "click" this.getData}} >Book Button</button>
-<button type="button" {{on "click" this.characterClicked}} >Character Button</button>
-<button type="button" {{on "click" this.houseClicked}} >House Button</button>
 
+<div class="wrapper">
 <ul>
-  {{#each this.data as |person index|}}
-    <li>Hello, {{person.name}}!</li>
+<li>Home</li>
+<li>Books<ul>
+  {{#each @model.books as |record|}}
+    <LinkTo @route='book' @model={{record}}><li>{{record.name}}</li></LinkTo>
   {{/each}}
 </ul>
+</li>
+<li>Characters
+<ul>
+  {{#each @model.characters as |record|}}
+    <LinkTo @route='character' @model={{record}}><li>Character name: {{record.name}}</li></LinkTo>
+  {{/each}}
+</ul>
+</li>
+<li>Houses
+<ul>
+ {{#each @model.houses as |record|}}
+    <LinkTo @route='house' @model={{record}}><li>{{record.name}}</li></LinkTo>
+  {{/each}}   
+</ul>
+</li>
+</ul>
+</div>

@@ -8,3 +8,13 @@
     <p>Year founded: {{this.model.founded}}</p>
     <p>Year it died: {{this.model.diedOut}}</p>
     <LinkTo @route='character' @model={{this.model}}><p>Current lord's name: {{this.model.currentLord}}</p></LinkTo>
+
+{{!-- swornMembers --}}
+<ul>
+  {{#each membersObject as |person index|}}
+    <li>Hello, {{person.name}}!</li>
+  {{/each}}
+</ul>
+
+{{!-- Dummy button to convert character URL data to text --}}
+<button type="button" {{on "click" this.convertCharacters}} >Convert Characters</button>
