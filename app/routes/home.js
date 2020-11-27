@@ -15,6 +15,23 @@ export default class HomeRoute extends Route {
 
             for (const [key2, value2] of Object.entries(newarr)) {
                 console.log(`${key2}: ${value2}`);
+                if (key === 'books') {
+                    let charactersList = value2.characters;
+       //             charactersList = charactersList.slice(0, 50);
+                    Promise.all(charactersList.map(characterUrl =>
+                        fetch(characterUrl)
+                    )).then(function (responses) {
+                        return Promise.all(responses.map(function (response) {
+                            return response.json();
+                        }));
+                    }).then(data => {
+                        value2.characters = data;
+                        console.log('our data: ', data);
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                    //TODO: Make API Call for each character to get its data
+                }
                 //value is our new array
                  // If name doesn't exist, replace empty string with character alias
                 if (key === 'characters') {
