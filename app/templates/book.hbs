@@ -7,6 +7,6 @@
 <p>Characters: </p>
 <ul>
   {{#each this.model.characters as |person index|}}
-    <li>Hello, {{person.name}}!</li>
+    <LinkTo @route='character' @model={{this.model}}><li>Hello, {{person.name}}!</li></LinkTo>
   {{/each}}
 </ul>

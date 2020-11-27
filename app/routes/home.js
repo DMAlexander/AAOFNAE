@@ -17,7 +17,7 @@ export default class HomeRoute extends Route {
                 console.log(`${key2}: ${value2}`);
                 if (key === 'books') {
                     let charactersList = value2.characters;
-       //             charactersList = charactersList.slice(0, 50);
+                    charactersList = charactersList.slice(0, 50);
                     Promise.all(charactersList.map(characterUrl =>
                         fetch(characterUrl)
                     )).then(function (responses) {
