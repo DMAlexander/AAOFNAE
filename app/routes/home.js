@@ -29,6 +29,13 @@ export default class HomeRoute extends Route {
                         const bookVals = await response.json();
                         books[key3] = bookVals;
                     }
+                    const allegiances = value2.allegiances;
+                    for (const [key4, value4] of Object.entries(allegiances)) {
+                        const api_url = value4; //TODO: Since we can have multiple books, we need another loop...
+                        const response = await fetch(api_url);
+                        const allegiancesVals = await response.json();
+                        allegiances[key4] = allegiancesVals;
+                    }
                 }
             }
         }
