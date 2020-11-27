@@ -37,6 +37,23 @@ export default class HomeRoute extends Route {
                         allegiances[key4] = allegiancesVals;
                     }
                 }
+
+                if (key === 'houses') {
+                    const swornMembers = value2.swornMembers;
+                    for (const [key5, value5] of Object.entries(swornMembers)) {
+                        const api_url = value5; //TODO: Since we can have multiple books, we need another loop...
+                        const response = await fetch(api_url);
+                        const memberVals = await response.json();
+                        swornMembers[key5] = memberVals;
+                    }
+                    const currentLord = value2.currentLord;
+                    if(currentLord) {
+                        const api_url = currentLord; //TODO: Since we can have multiple books, we need another loop...
+                        const response = await fetch(api_url);
+                        const lordVals = await response.json();
+                        value2.currentLord = lordVals;
+                    }
+                }
             }
         }
         return json; // overlord: "https://anapioficeandfire.com/api/houses/285"
