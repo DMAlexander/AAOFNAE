@@ -1,10 +1,14 @@
 <h1>Character Page</h1>
 
+{{log 'this.model: ' this.model}}
+
 <li>Name: {{this.model.name}}</li>
 <li>Culture: {{this.model.culture}}</li>
 <li>Born: {{this.model.born}}</li>
 <li>Died: {{this.model.died}}</li>
 <li>Aliases: {{this.model.aliases}}</li>
 <li>Allegiances: {{this.model.allegiances}}</li>
-<li>Yooo:: {{this.allegiances}}</li>
-<li>Swag: {{this.swag}} </li>
+<ul>Books:</ul>
+{{#each this.model.books as |record|}}
+  <LinkTo @route='book' @model={{record}}><li>{{record.name}}</li></LinkTo>
+{{/each}}

@@ -13,12 +13,22 @@ export default class HomeRoute extends Route {
             const newarr = await response.json();
             json[key] = newarr;
 
-            for (const [key, value] of Object.entries(newarr)) {
-                console.log(`${key}: ${value}`);
+            for (const [key2, value2] of Object.entries(newarr)) {
+                console.log(`${key2}: ${value2}`);
                 //value is our new array
                  // If name doesn't exist, replace empty string with character alias
-                if (!value.name) {
-                    value.name = value.aliases;
+                if (key === 'characters') {
+                    if (!value2.name) {
+                        value2.name = value2.aliases;
+                    }
+                    // If in character, should find book info
+                    const books = value2.books;
+                    for (const [key3, value3] of Object.entries(books)) {
+                        const api_url = value3; //TODO: Since we can have multiple books, we need another loop...
+                        const response = await fetch(api_url);
+                        const bookVals = await response.json();
+                        books[key3] = bookVals;
+                    }
                 }
             }
         }

@@ -13,7 +13,7 @@
 <li>Characters
 <ul>
   {{#each @model.characters as |record|}}
-    <LinkTo @route='character' @model={{record}}><li>Character name: {{record.name}}</li></LinkTo>
+    <LinkTo @route='character' @model={{record}}><li>{{record.name}}</li></LinkTo>
   {{/each}}
 </ul>
 </li>
