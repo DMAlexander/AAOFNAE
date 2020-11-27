@@ -7,7 +7,7 @@
 <li>Aliases: {{this.model.aliases}}</li>
 <ul>Allegiances: </ul>
 {{#each this.model.allegiances as |record|}}
-  <li>{{record.name}}</li>
+  <LinkTo @route='house' @model={{record}}><li>{{record.name}}</li></LinkTo>
 {{/each}}
 <ul>Books:</ul>
 {{#each this.model.books as |record|}}
