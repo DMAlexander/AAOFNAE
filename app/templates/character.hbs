@@ -5,12 +5,15 @@
 <li>Culture: {{this.culture}}</li>
 <li>Born: {{this.born}}</li>
 <li>Died: {{this.died}}</li>
-<li>Aliases: {{this.model.aliases}}</li>
+<ul>Aliases: </ul>
+{{#each this.aliases as |record|}}
+  <LinkTo @route='house' @model={{record}}><li>{{record.name}}</li></LinkTo>
+{{/each}}
 <ul>Allegiances: </ul>
-{{#each this.model.allegiances as |record|}}
+{{#each this.allegiances as |record|}}
   <LinkTo @route='house' @model={{record}}><li>{{record.name}}</li></LinkTo>
 {{/each}}
 <ul>Books:</ul>
-{{#each this.model.books as |record|}}
+{{#each this.book as |record|}}
   <LinkTo @route='book' @model={{record}}><li>{{record.name}}</li></LinkTo>
 {{/each}}
