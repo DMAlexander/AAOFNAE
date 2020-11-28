@@ -3,7 +3,7 @@
 
 <div class="wrapper">
 <ul>
-<li>Home</li>
+<LinkTo @route='home'><li>Home</li></LinkTo>
 <li>Books<ul>
   {{#each @model.books as |record|}}
     <LinkTo @route='book' @model={{record}}><li>{{record.name}}</li></LinkTo>
