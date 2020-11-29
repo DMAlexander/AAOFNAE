@@ -7,6 +7,15 @@ export default class HomeRoute extends Route {
     @tracked newObject = {};
 
     async model() {
+
+        let books = this.store.peekAll('books');
+        let characters = this.store.peekAll('characters');
+        let houses = this.store.peekAll('houses');
+
+        if (books.content.length != 0 || characters.content.length != 0 || houses.content.length != 0) {
+            return;
+        }
+
         let api_url = 'https://anapioficeandfire.com/api/';
         let response = await fetch(api_url);
         const json = await response.json();
