@@ -1,6 +1,12 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 export default class HomeRoute extends Route {
+    @service store;
+    @tracked newObject = {};
+
+    /*
     async model() {
         let api_url = 'https://anapioficeandfire.com/api/';
         let response = await fetch(api_url);
@@ -11,7 +17,7 @@ export default class HomeRoute extends Route {
             const api_url = value;
             const response = await fetch(api_url);
             const newarr = await response.json();
-            json[key] = newarr;
+            this.returnObject[key] = newarr;
 
             for (const [key2, value2] of Object.entries(newarr)) {
                 console.log(`${key2}: ${value2}`);
@@ -73,6 +79,85 @@ export default class HomeRoute extends Route {
                 }
             }
         }
-        return json; // overlord: "https://anapioficeandfire.com/api/houses/285"
+        debugger;
+   //     this.store.push({json});
+     return this.returnObject; // overlord: "https://anapioficeandfire.com/api/houses/285"
     }
+
+    afterModel() {
+        debugger;
+        const newData = this.returnObject;
+        this.returnObject.id = '1';
+        debugger;
+        this.store.push({
+            newData
+        });
+        debugger;
+    }
+    */
+    async model() {
+        // lets just concentrate on getting books for now. We'll get other stuff later when this works.
+    //    let api_url = 'https://anapioficeandfire.com/api/books';
+    //    let response = await fetch(api_url);
+    //    const json = await response.json();
+    //    this.newObject = json;
+        //lets make an object. Should look like this:
+        /*
+        data: {
+            // primary data for single record of type `Person`
+            id: '1',
+            type: 'person',
+            attributes: {
+            firstName: 'Daniel',
+            lastName: 'Kmak'
+        }
+    }
+*/
+/*
+        for (const [key, value] of Object.entries(json)) {
+            // need to get info for each record
+            console.log(`${key}: ${value}`);
+            debugger;
+            this.store.createRecord('book', {
+                ...value,
+            });
+        }
+        return this.newObject;
+        */
+        let api_url = 'https://anapioficeandfire.com/api/';
+        let response = await fetch(api_url);
+        const json = await response.json();
+        for (const [key, value] of Object.entries(json)) {
+            console.log(`${key}: ${value}`);
+            //value is our new array
+            const api_url = value;
+            const response = await fetch(api_url);
+            const newarr = await response.json();
+            this.newObject = newarr;
+      //      this.store.createRecord(key, {
+      //          ...newarr,
+      //      });
+      //      return newarr;
+            for (const [key2, value2] of Object.entries(newarr)) {
+                console.log(`${key2}: ${value2}`);
+                this.store.createRecord(key, value2);
+            }
+        }
+        return this.newObject;
+    }
+
+//    afterModel() {
+     //   debugger;
+    //    this.store.createRecord('book', {
+    //        ...this.newObject,
+    //    });
+        /*
+        const newData = this.newObject;
+        debugger;
+        this.store.push({
+            data: newData
+        });
+        debugger;
+        */
+//    }
 }
