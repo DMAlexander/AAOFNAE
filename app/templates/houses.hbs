@@ -3,5 +3,5 @@
 
 {{#each this.model.content as |stuff|}}
     <LinkTo @route='character' @model={{stuff._record}}><p>Character name: {{stuff._record.name}}</p></LinkTo>
-    <p>Culture: {{stuff._record.culture}}</p>
+    <p>Region: {{stuff._record.region}}</p>
 {{/each}}
