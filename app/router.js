@@ -15,5 +15,4 @@ Router.map(function() {
   this.route('houses');
   this.route('house', { path: 'houses/:name' });
   this.route('breadcrumb');
-  this.route('item');
 });
