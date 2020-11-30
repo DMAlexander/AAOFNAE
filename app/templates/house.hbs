@@ -1,6 +1,5 @@
 <Breadcrumb @model={{this.model}}/>
 <h1>House Page</h1>
-{{log 'this.model: ' this.model}}
     <p>Name: {{this.model.name}}</p>
     <p>Region: {{this.model.region}}</p>
     <p>Coat of Arms: {{this.model.coatOfArms}}</p>
@@ -10,7 +9,6 @@
     <p>Year it died: {{this.model.diedOut}}</p>
     <LinkTo @route='character' @model={{this.model}}><p>Current lord's name: {{this.model.currentLord.name}}</p></LinkTo>
 
-{{!-- swornMembers --}}
 <p>Sworn Members:</p>
 <ul>
   {{#each this.model.swornMembers as |person index|}}
