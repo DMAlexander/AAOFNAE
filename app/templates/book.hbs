@@ -1,13 +1,15 @@
+{{log 'this.model: ' this.model}}
+{{log '@model: ' @model}}
+<Breadcrumb @model={{this.model}}/>
 <h1>Book Page</h1>
 
 <p>Name: {{this.model.name}}</p>
 <p>Isbn: {{this.model.isbn}}</p>
 <p>Number of Pages: {{this.model.numberOfPages}}</p>
 <p>Released: {{this.model.released}}</p>
-<p>Characters: {{this.model.characters}}</p>
-
+<p>Characters: </p>
 <ul>
   {{#each this.model.characters as |person index|}}
-    <li>Hello, {{person.name}}!</li>
+    <LinkTo @route='character' @model={{this.model}}><li>Hello, {{person.name}}!</li></LinkTo>
   {{/each}}
 </ul>

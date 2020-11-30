@@ -1,10 +1,19 @@
+<Breadcrumb @model={{this.model}}/>
 <h1>Character Page</h1>
 
-<li>Name: {{this.model.name}}</li>
-<li>Culture: {{this.model.culture}}</li>
-<li>Born: {{this.model.born}}</li>
-<li>Died: {{this.model.died}}</li>
-<li>Aliases: {{this.model.aliases}}</li>
-<li>Allegiances: {{this.model.allegiances}}</li>
-<li>Yooo:: {{this.allegiances}}</li>
-<li>Swag: {{this.swag}} </li>
+<li>Name: {{this.name}}</li>
+<li>Culture: {{this.culture}}</li>
+<li>Born: {{this.born}}</li>
+<li>Died: {{this.died}}</li>
+<ul>Aliases: </ul>
+{{#each this.aliases as |record|}}
+  <LinkTo @route='house' @model={{record}}><li>{{record.name}}</li></LinkTo>
+{{/each}}
+<ul>Allegiances: </ul>
+{{#each this.allegiances as |record|}}
+  <LinkTo @route='house' @model={{record}}><li>{{record.name}}</li></LinkTo>
+{{/each}}
+<ul>Books:</ul>
+{{#each this.book as |record|}}
+  <LinkTo @route='book' @model={{record}}><li>{{record.name}}</li></LinkTo>
+{{/each}}

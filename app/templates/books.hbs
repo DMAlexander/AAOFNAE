@@ -1,7 +1,9 @@
+<Breadcrumb @model={{this.model}}/>
 <h1>Books Page</h1>
 
-{{#each this.model.books as |record|}}
-    <LinkTo @route='book' @model={{record}}><li>Book title: {{record.name}}</li></LinkTo>
-    <li>Author: {{record.authors}}</li>
-    <li>Number of Pages: {{record.numberOfPages}}</li>
+{{#each this.model.content as |stuff|}}
+{{stuff._record.name}}
+    <LinkTo @route='book' @model={{stuff._record}}><li>Book title: {{stuff._record.name}}</li></LinkTo>
+    <li>Author: {{stuff._record.authors}}</li>
+    <li>Number of Pages: {{stuff._record.numberOfPages}}</li>
 {{/each}}

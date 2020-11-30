@@ -1,10 +1,11 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class BooksRoute extends Route {
+    @service store;
+
     async model() {
-        const api_url = 'https://anapioficeandfire.com/api/books';
-        const response = await fetch(api_url);
-        const json = await response.json();
-        return json;
+        const data = this.store.peekAll('books');
+        return data;
     }
 }
