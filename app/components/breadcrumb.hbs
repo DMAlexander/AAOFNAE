@@ -1,28 +1,28 @@
 <p>Breadcrumb Component</p>
 
-
-<div class="wrapper">
-<ul>
-<LinkTo @route='home'><li>Home</li></LinkTo>
-<li>Books<ul>
-  {{#each @model.books as |record|}}
-    <LinkTo @route='book' @model={{record}}><li>{{record.name}}</li></LinkTo>
-  {{/each}}
-</ul>
-</li>
-<li>Characters
-<ul>
-  {{#each @model.characters as |record|}}
-    <LinkTo @route='character' @model={{record}}><li>{{record.name}}</li></LinkTo>
-  {{/each}}
-</ul>
-</li>
-<li>Houses
-<ul>
- {{#each @model.houses as |record|}}
-    <LinkTo @route='house' @model={{record}}><li>{{record.name}}</li></LinkTo>
-  {{/each}}   
-</ul>
-</li>
-</ul>
-</div>
+<nav>
+	<ul>
+		<li><LinkTo @route='home'>Home</LinkTo></li>
+		<li><LinkTo @route='books'>Books</LinkTo>
+			<ul>
+				{{#each @model.books as |record|}}
+          <li><LinkTo @route='book' @model={{record}}>{{record.name}}</LinkTo></li>
+        {{/each}}
+			</ul>
+		</li>
+		<li><LinkTo @route='characters'>Characters</LinkTo>
+      <ul>
+        {{#each @model.characters as |record|}}
+          <li><LinkTo @route='character' @model={{record}}>{{record.name}}</LinkTo></li>
+        {{/each}}
+      </ul> 
+    </li>
+		<li><LinkTo @route='houses'>Houses</LinkTo>
+      <ul>
+        {{#each @model.houses as |record|}}
+          <li><LinkTo @route='house' @model={{record}}>{{record.name}}</LinkTo></li>
+        {{/each}}   
+      </ul> 
+    </li>
+	</ul>
+</nav>

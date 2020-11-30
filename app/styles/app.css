@@ -1,50 +1,48 @@
-*{
-    margin: 0;
-    padding: 0;
-    }
-               body{
-    background-image: url(1.jpg);  
-    -webkit-background-size:cover;
-    background-size:cover;
-    background-position: center center;
-    height: 100vh;
-    }
-    
-    .wrapper{
-    width: 860px; 
-    margin: 0 auto;
-    }
-    .wrapper ul{
-    list-style: none;
-    margin-top: 2%;
-    }
-    .wrapper ul li {
-    background: #262626;
-    width: 170px;
-    border: 1px solid #fff;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    float: left;
-    color: #fff;
-    font-size: 16px;
-    position: relative;
-    font-family: poppins;
-    text-transform: uppercase;
-    font-weight: bold;
-    }
-    .wrapper ul li:hover{
-    background: crimson; 
-    }
-    
-    .wrapper ul ul{
-    display: none;
-    }
-    .wrapper ul li:hover > ul{
-    display: block;
-    }
-    .wrapper ul ul ul{
-    margin-left: 170px;
-    top: 0;
-    position: absolute;
-    }
+nav { 
+	width: 100%;
+	height: 60px;
+	background-color: #aaa;
+}
+
+nav ul {
+	float: left;
+}
+
+nav ul li {
+	float: left;
+	list-style: none; /* Important! Should have no bullet points next to list items */
+	position: relative;
+}
+
+nav ul li a {
+	display: block;
+	font-family: arial;
+	color: #222;
+	font-size: 12px;
+	padding: 10px 14px;
+	text-decoration: none;
+}
+
+nav ul li ul {
+	display: none; /* block --> display, none -> don't display (should only display on hover) */
+	position: absolute; /* Need this to not get weird spacing between menu items */
+	padding: 10px; /* Spacing between walls of navigation dropdown */
+}
+
+nav ul li:hover ul {
+	display: block; /* block --> display, none -> don't display (should only display on hover) */
+}
+
+nav ul li ul li {
+	width: 180px; /* we have this big to make sure it holds menu item option text */
+}
+
+nav ul li ul li a {
+	padding: 8px 14px;
+}
+
+nav ul li ul li a:hover {
+	background-color: #f3f3f3; /*highlights as gray on hover*/
+}
+
+
