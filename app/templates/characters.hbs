@@ -1,7 +1,11 @@
-<Breadcrumb @model={{this.model}}/>
+<Breadcrumb @model={{this.model}} />
 <h1>Characters Page</h1>
 
 {{#each this.model.content as |stuff|}}
-    <LinkTo @route='character' @model={{stuff._record}}><p>Character name: {{stuff._record.name}}</p></LinkTo>
-    <p>Culture: {{stuff._record.culture}}</p>
+<p>Character name: <LinkTo @route='character' @model={{stuff._record}}>
+{{stuff._record.name}}
+</LinkTo>
+</p>
+
+<p>Culture: {{stuff._record.culture}}</p>
 {{/each}}
