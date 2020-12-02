@@ -3,21 +3,21 @@
 		<li><LinkTo @route='home'>Home</LinkTo></li>
 		<li><LinkTo @route='books'>Books</LinkTo>
 			<ul>
-				{{#each @model.books as |record|}}
+				{{#each this.books as |record|}}
           <li><LinkTo @route='book' @model={{record}}>{{record.name}}</LinkTo></li>
         {{/each}}
 			</ul>
 		</li>
 		<li><LinkTo @route='characters'>Characters</LinkTo>
       <ul>
-        {{#each @model.characters as |record|}}
+        {{#each this.characters as |record|}}
           <li><LinkTo @route='character' @model={{record}}>{{record.name}}</LinkTo></li>
         {{/each}}
       </ul> 
     </li>
 		<li><LinkTo @route='houses'>Houses</LinkTo>
       <ul>
-        {{#each @model.houses as |record|}}
+        {{#each this.houses as |record|}}
           <li><LinkTo @route='house' @model={{record}}>{{record.name}}</LinkTo></li>
         {{/each}}   
       </ul> 
