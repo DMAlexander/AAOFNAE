@@ -6,7 +6,6 @@ export default class CharacterController extends Controller {
     }
 
     get culture() {
-        debugger;
         return this.model.culture || 'Unknown';
     }
 

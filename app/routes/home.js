@@ -41,13 +41,13 @@ export default class HomeRoute extends Route {
                     }).then(data => {
                         value2.characters = data;
                         console.log('our data: ', data);
+                        this.store.createRecord(key, value2);
                     }).catch(function (error) {
                         console.log(error);
                     });
-                    //TODO: Make API Call for each character to get its data
                 }
                 //value is our new array
-                 // If name doesn't exist, replace empty string with character alias
+                // If name doesn't exist, replace empty string with character alias
                 if (key === 'characters') {
                     if (!value2.name) {
                         value2.name = value2.aliases;
@@ -67,6 +67,7 @@ export default class HomeRoute extends Route {
                         const allegiancesVals = await response.json();
                         allegiances[key4] = allegiancesVals;
                     }
+                    this.store.createRecord(key, value2);
                 }
 
                 if (key === 'houses') {
@@ -78,17 +79,17 @@ export default class HomeRoute extends Route {
                         swornMembers[key5] = memberVals;
                     }
                     const currentLord = value2.currentLord;
-                    if(currentLord) {
+                    if (currentLord) {
                         const api_url = currentLord;
                         const response = await fetch(api_url);
                         const lordVals = await response.json();
                         value2.currentLord = lordVals;
                     }
+                    this.store.createRecord(key, value2);
                 }
                 console.log(`${key2}: ${value2}`);
-                this.store.createRecord(key, value2);
             }
         }
-     return this.newObject;
+        return this.newObject;
     }
 }

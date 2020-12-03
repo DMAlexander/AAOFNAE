@@ -8,7 +8,7 @@
 <li>Died: {{this.died}}</li>
 <ul>Aliases: </ul>
 {{#each this.aliases as |record|}}
-  <LinkTo @route='house' @model={{record}}><li>{{record.name}}</li></LinkTo>
+  <li>{{record}}</li>
 {{/each}}
 <ul>Allegiances: </ul>
 {{#each this.allegiances as |record|}}
