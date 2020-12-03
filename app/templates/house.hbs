@@ -1,18 +1,20 @@
 <Breadcrumb />
 
 <h1>House Page</h1>
-    <p>Name: {{this.model.name}}</p>
-    <p>Region: {{this.model.region}}</p>
-    <p>Coat of Arms: {{this.model.coatOfArms}}</p>
-    <p>Words of the house: {{this.model.words}}</p>
-    <p>Titles: {{this.model.titles}}</p>
-    <p>Year founded: {{this.model.founded}}</p>
-    <p>Year it died: {{this.model.diedOut}}</p>
-    <LinkTo @route='character' @model={{this.model}}><p>Current lord's name: {{this.model.currentLord.name}}</p></LinkTo>
+<p>Name: {{this.model.name}}</p>
+<p>Region: {{this.model.region}}</p>
+<p>Coat of Arms: {{this.model.coatOfArms}}</p>
+<p>Words of the house: {{this.model.words}}</p>
+<p>Titles: {{this.model.titles}}</p>
+<p>Year founded: {{this.model.founded}}</p>
+<p>Year it died: {{this.model.diedOut}}</p>
+<p>Current lord's name:<LinkTo @route='character' @model={{this.model}}>{{this.model.currentLord.name}}</LinkTo>
+</p>
 
 <p>Sworn Members:</p>
 <ul>
   {{#each this.model.swornMembers as |person index|}}
-    <li>Hello, {{person.name}}!</li>
+  <li><LinkTo @route='character' @model={{this.model}}>{{person.name}}</LinkTo>
+  </li>
   {{/each}}
 </ul>
