@@ -12,4 +12,6 @@ export default class BooksModel extends Model {
     @attr released;
     @attr characters;
     @attr povCharacters;
+    @attr bookComment;
+    @attr bookRating
 }

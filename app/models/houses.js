@@ -17,4 +17,6 @@ export default class HousesModel extends Model {
     @attr ancestralWeapons;
     @attr cadetBranches;
     @attr swornMembers;
+    @attr houseComment;
+    @attr houseRating;
 }

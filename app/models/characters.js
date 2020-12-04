@@ -17,4 +17,6 @@ export default class CharactersModel extends Model {
     @attr povBooks;
     @attr tvSeries;
     @attr playedBy;
+    @attr characterComment;
+    @attr characterRating;
 }
