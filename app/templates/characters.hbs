@@ -5,6 +5,7 @@
 {{#each this.model.content as |stuff|}}
 <p>Character name: <LinkTo @route='character' @model={{stuff._record}}>
 {{stuff._record.name}}
+<li>Id: {{stuff._record.id}}</li>
 </LinkTo>
 </p>
 

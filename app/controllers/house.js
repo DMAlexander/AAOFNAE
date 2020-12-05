@@ -18,31 +18,31 @@ export default class HouseController extends Controller {
     }
 
     get region() {
-        return this.houseObject?.culture || 'Unknown';
+        return this.houseObject?.region || 'Unknown';
     }
 
     get coatOfArms() {
-        return this.houseObject?.born || 'Unknown';
+        return this.houseObject?.coatOfArms || 'Unknown';
     }
 
     get words() {
-        return this.houseObject?.died || 'Unknown';
+        return this.houseObject?.words || 'Unknown';
     }
 
     get titles() {
-        return this.houseObject?.aliases || 'Unknown';
+        return this.houseObject?.titles || 'Unknown';
     }
 
     get founded() {
-        return this.houseObject?.allegiances || 'Unknown';
+        return this.houseObject?.founded || 'Unknown';
     }
 
     get diedOut() {
-        return this.houseObject?.books || 'Unknown';
+        return this.houseObject?.diedOut || 'Unknown';
     }
 
-    get currentLordName() {
-        return this.houseObject?.currentLord.name || 'Unknown';
+    get currentLord() {
+        return this.houseObject?.currentLord.name;
     }
 
     get swornMembers() {

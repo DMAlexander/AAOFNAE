@@ -31,11 +31,9 @@ export default class BookController extends Controller {
    }
 
    get released() {
-      return this.bookObject?.released || 'Unknown';
-   }
-
-   get comments() {
-      return this.bookObject?.comments || 'Unknown';
+      let date = this.bookObject?.released;
+      let index = date.indexOf('T');
+      return date.slice(0, index);
    }
 
    get characters() {

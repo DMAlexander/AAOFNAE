@@ -2,13 +2,36 @@
 
 <h1>Book Page</h1>
 
-<p>Name: {{this.model.name}}</p>
-<p>Isbn: {{this.model.isbn}}</p>
-<p>Number of Pages: {{this.model.numberOfPages}}</p>
-<p>Released: {{this.model.released}}</p>
+<input type="text" id="bcomment" name="bcomment">
+
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<style>
+.fa{
+	font-size:4em;
+}
+</style>
+</head>
+<body>
+<i {{on "click" this.thumbsUpClicked}} id="thumbsUp" style="color:black" class="fa fa-thumbs-up"></i>
+<i {{on "click" this.thumbsDownClicked}} id="thumbsDown" style="color:black" class="fa fa-thumbs-down"></i>
+</body>
+
+{{this.findRecord}}
+<p>ID: {{this.id}}</p>
+<p>Name: {{this.name}}</p>
+<p>Isbn: {{this.isbn}}</p>
+<p>Number of Pages: {{this.numberOfPages}}</p>
+<p>Released: {{#if this.released}}{{this.released}}{{else}}Unknown{{/if}}</p>
+{{this.rating}}
 <p>Characters: </p>
 <ul>
-  {{#each this.model.characters as |person index|}}
-    <LinkTo @route='character' @model={{this.model}}><li>{{person.name}}</li></LinkTo>
+  {{#each this.characters as |person index|}}
+  {{#if person.name}}
+    <LinkTo @route='character' @model={{this.bookObject}}><li>{{person.name}}</li></LinkTo>
+    {{else}}
+    <LinkTo @route='character' @model={{this.bookObject}}><li>{{person.aliases}}</li></LinkTo>
+    {{/if}}
   {{/each}}
 </ul>
+

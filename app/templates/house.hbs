@@ -17,7 +17,7 @@
 <i {{on "click" this.thumbsDownClicked}} id="thumbsDown" style="color:black" class="fa fa-thumbs-down"></i>
 </body>
 
-<p>Our record: {{this.findRecord}}</p>
+{{this.findRecord}}
 <p>{{this.rating}}</p>
 <p>Name: {{this.name}}</p>
 <p>Region: {{this.region}}</p>
@@ -26,8 +26,12 @@
 <p>Titles: {{this.titles}}</p>
 <p>Year founded: {{this.founded}}</p>
 <p>Year it died: {{this.diedOut}}</p>
-<p>Current lord's name:<LinkTo @route='character' @model={{this.model}}>{{this.currentLord.name}}</LinkTo>
+{{#if this.currentLord}}
+<p>Current lord's name:<LinkTo @route='character' @model={{this.model}}>{{this.currentLord}}</LinkTo>
 </p>
+{{else}}
+<p>Current lord's name: Unknown</p>
+{{/if}}
 
 <p>Sworn Members:</p>
 <ul>

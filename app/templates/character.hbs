@@ -17,22 +17,25 @@
 <i {{on "click" this.thumbsDownClicked}} id="thumbsDown" style="color:black" class="fa fa-thumbs-down"></i>
 </body>
 
-<p>Our record: {{this.findRecord}}</p>
+{{this.findRecord}}
 <p>{{this.rating}}</p>
 <li>Name: {{this.name}}</li>
 <li>Culture: {{this.culture}}</li>
 <li>Born: {{this.born}}</li>
 <li>Died: {{this.died}}</li>
+
 <ul>Aliases: </ul>
 {{#each this.aliases as |record|}}
 <li>{{record}}</li>
 {{/each}}
+
 <ul>Allegiances: </ul>
 {{#each this.allegiances as |record|}}
 <LinkTo @route='house' @model={{record}}>
   <li>{{record.name}}</li>
 </LinkTo>
 {{/each}}
+
 <ul>Books:</ul>
 {{#each this.book as |record|}}
 <LinkTo @route='book' @model={{record}}>

@@ -22,7 +22,7 @@ export default class HomeRoute extends Route {
         for (const [key, value] of Object.entries(json)) {
             console.log(`${key}: ${value}`);
             //value is our new array
-            const api_url = value;
+            const api_url = value + '?pagesize=100';
             const response = await fetch(api_url);
             const newarr = await response.json();
             this.newObject[key] = newarr;
@@ -46,7 +46,7 @@ export default class HomeRoute extends Route {
                         this.store.createRecord(key, value2);
                     }).catch(function (error) {
                         console.log(error);
-                    });
+                    }); 
                 }
                 //value is our new array
                 // If name doesn't exist, replace empty string with character alias
