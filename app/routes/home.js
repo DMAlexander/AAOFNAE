@@ -28,6 +28,8 @@ export default class HomeRoute extends Route {
             this.newObject[key] = newarr;
 
             for (const [key2, value2] of Object.entries(newarr)) {
+                const id = parseInt(key2);
+                value2.id = id+1;
                 console.log(`${key2}: ${value2}`);
                 if (key === 'books') {
                     let charactersList = value2.characters;
