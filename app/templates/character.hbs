@@ -2,19 +2,40 @@
 
 <h1>Character Page</h1>
 
+<input type="text" id="bcomment" name="bcomment">
+
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<style>
+.fa{
+	font-size:4em;
+}
+</style>
+</head>
+<body>
+<i {{on "click" this.thumbsUpClicked}} id="thumbsUp" style="color:black" class="fa fa-thumbs-up"></i>
+<i {{on "click" this.thumbsDownClicked}} id="thumbsDown" style="color:black" class="fa fa-thumbs-down"></i>
+</body>
+
+<p>Our record: {{this.findRecord}}</p>
+<p>{{this.rating}}</p>
 <li>Name: {{this.name}}</li>
 <li>Culture: {{this.culture}}</li>
 <li>Born: {{this.born}}</li>
 <li>Died: {{this.died}}</li>
 <ul>Aliases: </ul>
 {{#each this.aliases as |record|}}
-  <li>{{record}}</li>
+<li>{{record}}</li>
 {{/each}}
 <ul>Allegiances: </ul>
 {{#each this.allegiances as |record|}}
-  <LinkTo @route='house' @model={{record}}><li>{{record.name}}</li></LinkTo>
+<LinkTo @route='house' @model={{record}}>
+  <li>{{record.name}}</li>
+</LinkTo>
 {{/each}}
 <ul>Books:</ul>
 {{#each this.book as |record|}}
-  <LinkTo @route='book' @model={{record}}><li>{{record.name}}</li></LinkTo>
+<LinkTo @route='book' @model={{record}}>
+  <li>{{record.name}}</li>
+</LinkTo>
 {{/each}}
