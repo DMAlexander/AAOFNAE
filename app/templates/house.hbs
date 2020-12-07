@@ -3,16 +3,16 @@
 <h1>House Page</h1>
 
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<style>
-.fa{
-	font-size:4em;
-}
-</style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <style>
+    .fa{
+      font-size:4em;
+    }
+  </style>
 </head>
 <body>
-<i {{on "click" this.thumbsUpClicked}} id="thumbsUp" style="color:black" class="fa fa-thumbs-up"></i>
-<i {{on "click" this.thumbsDownClicked}} id="thumbsDown" style="color:black" class="fa fa-thumbs-down"></i>
+  <i {{on "click" this.thumbsUpClicked}} id="thumbsUp" style="color:black" class="fa fa-thumbs-up"></i>
+  <i {{on "click" this.thumbsDownClicked}} id="thumbsDown" style="color:black" class="fa fa-thumbs-down"></i>
 </body>
 
 <p>{{this.rating}}</p>
@@ -23,8 +23,9 @@
 <p>Titles: {{this.titles}}</p>
 <p>Year founded: {{this.founded}}</p>
 <p>Year it died: {{this.diedOut}}</p>
-{{#if this.currentLord}}
-<p>Current lord's name:<LinkTo @route='character' @model={{this.model}}>{{this.currentLord}}</LinkTo>
+{{#if this.currentLord as |person|}}
+<p>Current lord's name:<LinkTo @route='character' @model={{person.id}}>
+    {{#if person.name}}{{person.name}}{{else}}{{person.aliases}}{{/if}}</LinkTo>
 </p>
 {{else}}
 <p>Current lord's name: Unknown</p>
@@ -33,7 +34,7 @@
 <p>Sworn Members:</p>
 <ul>
   {{#each this.swornMembers as |person index|}}
-  <li><LinkTo @route='character' @model={{this.model}}>{{person.name}}</LinkTo>
+  <li><LinkTo @route='character' @model={{person.id}}>{{#if person.name}}{{person.name}}{{else}}{{person.aliases}}{{/if}}</LinkTo>
   </li>
   {{/each}}
 </ul>
