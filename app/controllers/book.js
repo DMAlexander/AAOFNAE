@@ -1,53 +1,51 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
 
 export default class BookController extends Controller {
    @service store;
-   @tracked bookObject;
-
-   get findRecord() {
-      const data = this.store.peekRecord('books', this.model.id);
-      console.log(data.get('id'));
-      this.bookObject = data;
-      return this.bookObject;
-   }
 
    get id() {
-      return this.bookObject?.id || 'Unknown';
+      return this.model.id;
    }
 
    get name() {
-      return this.bookObject?.name || 'Unknown';
+      return this.model.name;
    }
 
    get isbn() {
-      return this.bookObject?.isbn || 'Unknown';
+      return this.model.isbn || 'Unknown';
    }
 
    get numberOfPages() {
-      return this.bookObject?.numberOfPages || 'Unknown';
+      return this.model.numberOfPages || 'Unknown';
    }
 
    get released() {
-      let date = this.bookObject?.released;
+      let date = this.model?.released;
+      if (!date) {
+         return 'Unknown';
+      }
       let index = date.indexOf('T');
       return date.slice(0, index);
    }
 
    get characters() {
-      return this.bookObject?.characters || 'Unknown';
+      const allCharacters = this.store.peekAll('characters');
+      const characterObject = this.model.characters;
+      const filteredStuff = allCharacters.filter((result) => characterObject?.includes(result.url));
+      console.log(filteredStuff);
+      return filteredStuff;
    }
 
    get rating() {
       const thumbsUp = document.getElementById("thumbsUp");
       const thumbsDown = document.getElementById("thumbsDown");
-      if (this.bookObject.bookRating === 'liked') {
+      if (this.model?.bookRating === 'liked') {
          thumbsUp.style.color = "blue";
          thumbsDown.style.color = "black";
       }
-      else if (this.bookObject.bookRating === 'disliked') {
+      else if (this.model?.bookRating === 'disliked') {
          thumbsUp.style.color = "black";
          thumbsDown.style.color = "blue";
       }
@@ -55,45 +53,43 @@ export default class BookController extends Controller {
          thumbsUp.style.color = "black";
          thumbsDown.style.color = "black";
       }
-      return this.bookObject?.bookRating;
+      return this.model?.bookRating;
    }
 
    @action
-   thumbsUpClicked(){
+   thumbsUpClicked() {
       const thumbsUp = document.getElementById("thumbsUp");
       const thumbsDown = document.getElementById("thumbsDown");
       let rating = null;
-      if(thumbsUp.style.color === "black") {
+      if (thumbsUp.style.color === "black") {
          thumbsUp.style.color = "blue";
          thumbsDown.style.color = "black";
          rating = 'liked';
       }
-      else if(thumbsUp.style.color === "blue") {
+      else if (thumbsUp.style.color === "blue") {
          thumbsUp.style.color = "black";
          thumbsDown.style.color = "black";
          rating = null;
       }
-      const record = this.bookObject;
-      record.id = this.model.id;
+      const record = this.model;
       record.bookRating = rating;
    }
-    
+
    @action
-   thumbsDownClicked(){
+   thumbsDownClicked() {
       const thumbsUp = document.getElementById("thumbsUp");
       const thumbsDown = document.getElementById("thumbsDown");
       let rating = null;
-      if(thumbsDown.style.color === "black") {
+      if (thumbsDown.style.color === "black") {
          thumbsDown.style.color = "blue";
          thumbsUp.style.color = "black";
          rating = 'disliked';
-      } else if(thumbsDown.style.color === "blue") {
+      } else if (thumbsDown.style.color === "blue") {
          thumbsDown.style.color = "black";
          thumbsUp.style.color = "black";
          rating = null;
       }
-      const record = this.bookObject;
-      record.id = this.model.id;
+      const record = this.model;
       record.bookRating = rating;
    }
 }

@@ -1,8 +1,6 @@
-<Breadcrumb />
+<Breadcrumb @record={{this.model}} />
 
 <h1>Book Page</h1>
-
-<input type="text" id="bcomment" name="bcomment">
 
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -17,21 +15,15 @@
 <i {{on "click" this.thumbsDownClicked}} id="thumbsDown" style="color:black" class="fa fa-thumbs-down"></i>
 </body>
 
-{{this.findRecord}}
+{{this.rating}}
 <p>ID: {{this.id}}</p>
 <p>Name: {{this.name}}</p>
 <p>Isbn: {{this.isbn}}</p>
 <p>Number of Pages: {{this.numberOfPages}}</p>
 <p>Released: {{#if this.released}}{{this.released}}{{else}}Unknown{{/if}}</p>
-{{this.rating}}
 <p>Characters: </p>
 <ul>
   {{#each this.characters as |person index|}}
-  {{#if person.name}}
-    <LinkTo @route='character' @model={{this.bookObject}}><li>{{person.name}}</li></LinkTo>
-    {{else}}
-    <LinkTo @route='character' @model={{this.bookObject}}><li>{{person.aliases}}</li></LinkTo>
-    {{/if}}
+    <LinkTo @route='character' @model={{person.id}}><li>{{#if person.name}}{{person.name}}{{else}}{{person.aliases}}{{/if}}</li></LinkTo>
   {{/each}}
 </ul>
-

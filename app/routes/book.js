@@ -3,8 +3,10 @@ import { inject as service } from '@ember/service';
 
 export default class BookRoute extends Route {
     @service store;
-    async model() {
-        const data = this.store.peekAll('books');
-        return data;
+    model(params) {
+        const {
+            books_id,
+        } = params;
+        return this.store.peekRecord('books', books_id);
     }
 }
