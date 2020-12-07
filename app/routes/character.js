@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 export default class CharacterRoute extends Route {
     @service store;
 
-    async model(params) {
+    model(params) {
         const {
             characters_id,
         } = params;

@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default class CharactersRoute extends Route {
     @service store;
-    async model() {
+    model() {
         const data = this.store.peekAll('characters');
         return data;
     }

@@ -4,11 +4,11 @@ import { inject as service } from '@ember/service';
 export default class HouseRoute extends Route {
     @service store;
 
-    async model(params) {
+    model(params) {
         const {
             houses_id,
         } = params;
-        const data = this.store.peekRecord('characters', houses_id);
+        const data = this.store.peekRecord('houses', houses_id);
         return data;
     }
 }
