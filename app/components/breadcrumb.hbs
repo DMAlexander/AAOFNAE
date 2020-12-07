@@ -1,25 +1,21 @@
 <nav>
 	<ul>
 		<li><LinkTo @route='home'>Home</LinkTo></li>
-		<li><LinkTo @route='books'>Books</LinkTo>
-			<ul>
-				{{#each this.books as |record|}}
-          <li><LinkTo @route='book' @model={{record}}>{{record.name}}</LinkTo></li>
-        {{/each}}
-			</ul>
-		</li>
-		<li><LinkTo @route='characters'>Characters</LinkTo>
+    <li><LinkTo @route='books'>{{#if this.inHome}}Books{{else}}{{this.routeName}}{{/if}}</LinkTo>
       <ul>
-        {{#each this.characters as |record|}}
-          <li><LinkTo @route='character' @model={{record}}>{{record.name}}</LinkTo></li>
-        {{/each}}
-      </ul> 
+          <li><LinkTo @route='books'>Books</LinkTo></li>
+          <li><LinkTo @route='characters'>Characters</LinkTo></li>
+          <li><LinkTo @route='houses'>Houses</LinkTo></li>
+      </ul>
     </li>
-		<li><LinkTo @route='houses'>Houses</LinkTo>
-      <ul>
-        {{#each this.houses as |record|}}
-          <li><LinkTo @route='house' @model={{record}}>{{record.name}}</LinkTo></li>
-        {{/each}}   
+    <li><LinkTo @route={{this.routeName}}>{{this.record.name}}</LinkTo>
+      <ul> 
+        {{#each this.record as |stuff|}}
+          <li><LinkTo @route={{this.routeName}} @model={{stuff.id}}>{{#if stuff.name}}{{stuff.name}}{{else}}{{stuff.aliases}}{{/if}}</LinkTo></li>
+          <!--
+          <li><LinkTo @route='book' @model={{record.id}}>{{record.name}}</LinkTo></li>
+          -->
+        {{/each}}
       </ul> 
     </li>
 	</ul>

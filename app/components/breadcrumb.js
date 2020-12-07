@@ -3,18 +3,15 @@ import { inject as service } from '@ember/service';
 
 export default class BreadcrumbComponent extends Component {
     @service store;
-    get books() {
-        const books = this.store.peekAll('books');
-        return books;
+    @service router;
+
+    get routeName() {
+        const routeName = this.router.currentRouteName;
+        return routeName;
     }
 
-    get characters() {
-        const characters = this.store.peekAll('characters');
-        return characters;
-    }
-
-    get houses() {
-        const houses = this.store.peekAll('houses');
-        return houses;
+    get inHome() {
+        const inHome = this.router.currentRouteName === 'home' ? true : false;
+        return inHome;
     }
 }
