@@ -8,13 +8,21 @@
           <li><LinkTo @route='houses'>Houses</LinkTo></li>
       </ul>
     </li>
-    <li><LinkTo @route={{this.routeName}}>{{this.record.name}}</LinkTo>
+    <li><LinkTo @route={{this.routeName}}>{{#if this.args.baseRoute}}Record{{else}}{{this.recordName}}{{/if}}</LinkTo>
+    {{log 'baseRoute: ' this.args.baseRoute}}
       <ul> 
-        {{#each this.record as |stuff|}}
-          <li><LinkTo @route={{this.routeName}} @model={{stuff.id}}>{{#if stuff.name}}{{stuff.name}}{{else}}{{stuff.aliases}}{{/if}}</LinkTo></li>
-          <!--
-          <li><LinkTo @route='book' @model={{record.id}}>{{record.name}}</LinkTo></li>
-          -->
+        {{#each this.recordData as |data|}}
+        {{log 'breadcrumb data:' data}}
+          {{log 'this.showBooks' this.showBooks}}
+          {{#if this.showBooks}}
+            <li><LinkTo @route='book' @model={{data.id}}>{{data.name}}</LinkTo></li>
+          {{/if}}
+          {{#if this.showCharacters}}
+            <li><LinkTo @route='character' @model={{data.id}}>{{#if data.name}}{{data.name}}{{else}}{{data.aliases}}{{/if}}</LinkTo></li>
+          {{/if}}
+          {{#if this.showHouses}}
+            <li><LinkTo @route='house' @model={{data.id}}>{{data.name}}</LinkTo></li>
+          {{/if}}
         {{/each}}
       </ul> 
     </li>
