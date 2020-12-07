@@ -1,8 +1,6 @@
-<Breadcrumb />
+<Breadcrumb @record={{this.model}} />
 
 <h1>House Page</h1>
-
-<input type="text" id="bcomment" name="bcomment">
 
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -17,7 +15,6 @@
 <i {{on "click" this.thumbsDownClicked}} id="thumbsDown" style="color:black" class="fa fa-thumbs-down"></i>
 </body>
 
-{{this.findRecord}}
 <p>{{this.rating}}</p>
 <p>Name: {{this.name}}</p>
 <p>Region: {{this.region}}</p>

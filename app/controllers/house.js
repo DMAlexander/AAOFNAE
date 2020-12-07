@@ -1,108 +1,114 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
 
 export default class HouseController extends Controller {
     @service store;
-    @tracked houseObject;
-    get findRecord() {
-       const data = this.store.peekRecord('houses', this.model.id);
-       console.log(data.get('id'));
-       this.houseObject = data;
-       return this.houseObject;
-    }
 
     get name() {
-        return this.houseObject?.name || 'Unknown';
+        return this.model?.name || 'Unknown';
     }
 
     get region() {
-        return this.houseObject?.region || 'Unknown';
+        return this.model?.region || 'Unknown';
     }
 
     get coatOfArms() {
-        return this.houseObject?.coatOfArms || 'Unknown';
+        return this.model?.coatOfArms || 'Unknown';
     }
 
     get words() {
-        return this.houseObject?.words || 'Unknown';
+        return this.model?.words || 'Unknown';
     }
 
     get titles() {
-        return this.houseObject?.titles || 'Unknown';
+        return this.model?.titles || 'Unknown';
     }
 
     get founded() {
-        return this.houseObject?.founded || 'Unknown';
+        return this.model?.founded || 'Unknown';
     }
 
     get diedOut() {
-        return this.houseObject?.diedOut || 'Unknown';
+        return this.model?.diedOut || 'Unknown';
     }
 
     get currentLord() {
-        return this.houseObject?.currentLord.name;
+        const allCharacters = this.store.peekAll('characters');
+        const houseObject = this.model?.currentLord?.name;
+        const filteredStuff = allCharacters.filter((result) => houseObject?.includes(result.url));
+        console.log(filteredStuff);
+        return filteredStuff;
     }
 
     get swornMembers() {
-        return this.houseObject?.swornMembers || 'Unknown';
+        const allCharacters = this.store.peekAll('characters');
+        const swornMembersObject = this.model?.swornMembers;
+        const filteredStuff = allCharacters.filter((result) => swornMembersObject?.includes(result.url));
+        console.log(filteredStuff);
+        return filteredStuff;
+    }
+
+    get allegiances() {
+        const allhouses = this.store.peekAll('houses');
+        const allegiancesObject = this.model.allegiances;
+        const filteredStuff = allhouses.filter((result) => allegiancesObject?.includes(result.url));
+        console.log(filteredStuff);
+        return filteredStuff;
     }
 
     get rating() {
         const thumbsUp = document.getElementById("thumbsUp");
         const thumbsDown = document.getElementById("thumbsDown");
-        if (this.houseObject.houseRating === 'liked') {
-           thumbsUp.style.color = "blue";
-           thumbsDown.style.color = "black";
+        if (this.model.houseRating === 'liked') {
+            thumbsUp.style.color = "blue";
+            thumbsDown.style.color = "black";
         }
-        else if (this.houseObject.houseRating === 'disliked') {
-           thumbsUp.style.color = "black";
-           thumbsDown.style.color = "blue";
+        else if (this.model.houseRating === 'disliked') {
+            thumbsUp.style.color = "black";
+            thumbsDown.style.color = "blue";
         }
         else {
-           thumbsUp.style.color = "black";
-           thumbsDown.style.color = "black";
+            thumbsUp.style.color = "black";
+            thumbsDown.style.color = "black";
         }
-        return this.houseObject?.houseRating;
-     }
-  
+        return this.model?.houseRating;
+    }
+
     @action
-    thumbsUpClicked(){
+    thumbsUpClicked() {
         const thumbsUp = document.getElementById("thumbsUp");
         const thumbsDown = document.getElementById("thumbsDown");
         let rating = null;
-        if(thumbsUp.style.color === "black") {
-           thumbsUp.style.color = "blue";
-           thumbsDown.style.color = "black";
-           rating = 'liked';
+        if (thumbsUp.style.color === "black") {
+            thumbsUp.style.color = "blue";
+            thumbsDown.style.color = "black";
+            rating = 'liked';
         }
-        else if(thumbsUp.style.color === "blue") {
-           thumbsUp.style.color = "black";
-           thumbsDown.style.color = "black";
-           rating = null;
+        else if (thumbsUp.style.color === "blue") {
+            thumbsUp.style.color = "black";
+            thumbsDown.style.color = "black";
+            rating = null;
         }
-        const record = this.houseObject;
-        record.id = this.model.id;
+        const record = this.model;
         record.houseRating = rating;
-     }
-      
-     @action
-     thumbsDownClicked(){
+    }
+
+    @action
+    thumbsDownClicked() {
         const thumbsUp = document.getElementById("thumbsUp");
         const thumbsDown = document.getElementById("thumbsDown");
         let rating = null;
-        if(thumbsDown.style.color === "black") {
-           thumbsDown.style.color = "blue";
-           thumbsUp.style.color = "black";
-           rating = 'disliked';
-        } else if(thumbsDown.style.color === "blue") {
-           thumbsDown.style.color = "black";
-           thumbsUp.style.color = "black";
-           rating = null;
+        if (thumbsDown.style.color === "black") {
+            thumbsDown.style.color = "blue";
+            thumbsUp.style.color = "black";
+            rating = 'disliked';
+        } else if (thumbsDown.style.color === "blue") {
+            thumbsDown.style.color = "black";
+            thumbsUp.style.color = "black";
+            rating = null;
         }
-        const record = this.houseObject;
-        record.id = this.model.id;
+        const record = this.model;
         record.houseRating = rating;
-     }
+    }
 }
