@@ -1,105 +1,102 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
 
 export default class CharacterController extends Controller {
     @service store;
-    @tracked characterObject;
  
-    get findRecord() {
-       const data = this.store.peekRecord('characters', this.model.id);
-       console.log(data.get('id'));
-       this.characterObject = data;
-       return this.characterObject;
-    }
-
     get id() {
-       return this.characterObject?.id || 'Unknown';
+       return this.model?.id || 'Unknown';
     }
 
     get name() {
-        return this.characterObject?.name || 'Unknown';
+        return this.model?.name || 'Unknown';
     }
 
     get culture() {
-        return this.characterObject?.culture || 'Unknown';
+        return this.model?.culture || 'Unknown';
     }
 
     get born() {
-        return this.characterObject?.born || 'Unknown';
+        return this.model?.born || 'Unknown';
     }
 
     get died() {
-        return this.characterObject?.died || 'Unknown';
+        return this.model?.died || 'Unknown';
     }
 
     get aliases() {
-        return this.characterObject?.aliases || 'Unknown';
+        return this.model?.aliases || 'Unknown';
     }
 
     get allegiances() {
-        return this.characterObject?.allegiances || 'Unknown';
+      const allhouses = this.store.peekAll('houses');
+      const allegiancesObject = this.model.allegiances;
+      const filteredStuff = allhouses.filter((result) => allegiancesObject?.includes(result.url));
+      console.log(filteredStuff);
+      return filteredStuff;
     }
 
     get book() {
-        return this.characterObject?.books || 'Unknown';
+      const allBooks = this.store.peekAll('books');
+      const booksObject = this.model.books;
+      const filteredStuff = allBooks.filter((result) => booksObject?.includes(result.url));
+      console.log(filteredStuff);
+      return filteredStuff;
     }
 
     get rating() {
-        const thumbsUp = document.getElementById("thumbsUp");
-        const thumbsDown = document.getElementById("thumbsDown");
-        if (this.characterObject.characterRating === 'liked') {
-           thumbsUp.style.color = "blue";
-           thumbsDown.style.color = "black";
-        }
-        else if (this.characterObject.characterRating === 'disliked') {
-           thumbsUp.style.color = "black";
-           thumbsDown.style.color = "blue";
-        }
-        else {
-           thumbsUp.style.color = "black";
-           thumbsDown.style.color = "black";
-        }
-        return this.characterObject?.characterRating;
-     }
-  
-     @action
-     thumbsUpClicked(){
-        const thumbsUp = document.getElementById("thumbsUp");
-        const thumbsDown = document.getElementById("thumbsDown");
-        let rating = null;
-        if(thumbsUp.style.color === "black") {
-           thumbsUp.style.color = "blue";
-           thumbsDown.style.color = "black";
-           rating = 'liked';
-        }
-        else if(thumbsUp.style.color === "blue") {
-           thumbsUp.style.color = "black";
-           thumbsDown.style.color = "black";
-           rating = null;
-        }
-        const record = this.characterObject;
-        record.id = this.model.id;
-        record.characterRating = rating;
-     }
-      
-     @action
-     thumbsDownClicked(){
-        const thumbsUp = document.getElementById("thumbsUp");
-        const thumbsDown = document.getElementById("thumbsDown");
-        let rating = null;
-        if(thumbsDown.style.color === "black") {
-           thumbsDown.style.color = "blue";
-           thumbsUp.style.color = "black";
-           rating = 'disliked';
-        } else if(thumbsDown.style.color === "blue") {
-           thumbsDown.style.color = "black";
-           thumbsUp.style.color = "black";
-           rating = null;
-        }
-        const record = this.characterObject;
-        record.id = this.model.id;
-        record.characterRating = rating;
-     }
+      const thumbsUp = document.getElementById("thumbsUp");
+      const thumbsDown = document.getElementById("thumbsDown");
+      if (this.model?.characterRating === 'liked') {
+         thumbsUp.style.color = "blue";
+         thumbsDown.style.color = "black";
+      }
+      else if (this.model?.characterRating === 'disliked') {
+         thumbsUp.style.color = "black";
+         thumbsDown.style.color = "blue";
+      }
+      else {
+         thumbsUp.style.color = "black";
+         thumbsDown.style.color = "black";
+      }
+      return this.model?.characterRating;
+   }
+
+   @action
+   thumbsUpClicked() {
+      const thumbsUp = document.getElementById("thumbsUp");
+      const thumbsDown = document.getElementById("thumbsDown");
+      let rating = null;
+      if (thumbsUp.style.color === "black") {
+         thumbsUp.style.color = "blue";
+         thumbsDown.style.color = "black";
+         rating = 'liked';
+      }
+      else if (thumbsUp.style.color === "blue") {
+         thumbsUp.style.color = "black";
+         thumbsDown.style.color = "black";
+         rating = null;
+      }
+      const record = this.model;
+      record.characterRating = rating;
+   }
+
+   @action
+   thumbsDownClicked() {
+      const thumbsUp = document.getElementById("thumbsUp");
+      const thumbsDown = document.getElementById("thumbsDown");
+      let rating = null;
+      if (thumbsDown.style.color === "black") {
+         thumbsDown.style.color = "blue";
+         thumbsUp.style.color = "black";
+         rating = 'disliked';
+      } else if (thumbsDown.style.color === "blue") {
+         thumbsDown.style.color = "black";
+         thumbsUp.style.color = "black";
+         rating = null;
+      }
+      const record = this.model;
+      record.characterRating = rating;
+   }
 }
