@@ -1,9 +1,9 @@
-<Breadcrumb />
+<Breadcrumb @record={{this.model}} />
 
 <h1>Houses Page</h1>
 
 {{#each this.model.content as |stuff|}}
-    <LinkTo @route='character' @model={{stuff._record}}><p>Character name: {{stuff._record.name}}</p></LinkTo>
+    <LinkTo @route='house' @model={{stuff._record.id}}><p>House name: {{stuff._record.name}}</p></LinkTo>
     <p>Region: {{stuff._record.region}}</p>
     <p>Id: {{stuff._record.id}}</p>
 {{/each}}
